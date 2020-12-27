@@ -1,0 +1,77 @@
+{% extends 'boardgames/base.html' %}
+{% load static %}
+
+{% block title %}Board games!{% endblock %}
+
+{% block content %}
+    <br/>
+    <h3><a href="/">Apps home</a></h3>
+    <br/>
+    <p>I've been playing tons of amazing games with family and friends
+    during this time of plague. It's gotten hard to keep track of what's
+    where! So here's my favorites (so far). See below the list for advice
+    on what game might be best for your situation.</p>
+
+    <p>NOTE: using things for free on the internet is all fun and games
+    until it means game designers and programmers aren't getting fairly
+    compensated for their work. I recommend:</p>
+
+    <ol>
+        <li>Owning these games before playing them online – this option is
+            like bringing the physical game to a party. It means you're
+            paying the designer a fair price. But it still doesn't thank
+            the people who implement the game somewhere on a website.</li>
+        <li>Tip, donate, or buy a coffee for the web developers who put
+            your favorite games online. Even just a $5-10 contribution
+            helps.</li>
+        <li>In addition to (1) and/or (2), send designers a thank you
+            email! They'll certainly appreciate it.</li>
+    </ol>
+
+    <h2>Games!</h2>
+    <ol>
+    {% for game in played_games %}
+    <li><a href="{{ game.url }}">{{ game.game }}</a> ({{ game.min_players }}
+        - {{ game.max_players }} players)<br>
+        <small>{{ game.notes }}
+        {% if game.donation_url %}
+        <br><a href="{{ game.donation_url }}">Donation
+                link</a>
+        {% endif %}
+        </small>
+       </li>
+    {% endfor %}
+    </ol>
+    <hr/>
+
+    <h2>But what game should I play??</h2>
+
+    <p>Party games: skribbl.io, Scattergories</p>
+
+    <p>Social intrigue games: Secret Hitler and Avalon</p>
+
+    <p>Older family members: Bridge is always a winner with my grandma! </p>
+
+    <p>Good for just two or three people: Splendor</p>
+
+    <h2>(Games I'd like to play someday)</h2>
+
+    <ol>
+    {% for game in unplayed_games %}
+    <li><a href="{{ game.url }}">{{ game.game }}</a> ({{ game.min_players }}
+        - {{ game.max_players }} players)<br>
+        <small>{{ game.notes }}
+        {% if game.donation_url %}
+        <br><a href="{{ game.donation_url }}">Donation
+                link</a>
+        {% endif %}
+        </small>
+       </li>
+    {% endfor %}
+    </ol>
+
+    <br/>
+    <p>(See this project on 
+        <a href="https://github.com/TashaArvanitis/boardgames">GitHub</a>)</p>
+
+{% endblock %}
