@@ -6,7 +6,6 @@ from .models import GameSite
 def index_view(request):
     template_name = 'boardgames/index.html'
 
-    games = GameSite.objects.all()
     played_games = GameSite.objects.filter(have_played=True)
     unplayed_games = GameSite.objects.filter(have_played=False)
     return render(request, template_name, {
